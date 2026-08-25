@@ -1,0 +1,2 @@
+backend_image: sourabh5050/backend:<+pipeline.sequenceId>
+frontend_image: sourabh5050/frontend:<+pipeline.sequenceId>
