@@ -1,9 +1,14 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from prometheus_fastapi_instrumentator import Instrumentator
 import datetime
 import socket
 
 app = FastAPI(title="CodeProm Backend API")
+
+# Add Prometheus instrumentation
+Instrumentator().instrument(app).expose(app, include_in_schema=False, should_gzip=True)
+
 
 # Allow the frontend to call this API (CORS)
 app.add_middleware(
