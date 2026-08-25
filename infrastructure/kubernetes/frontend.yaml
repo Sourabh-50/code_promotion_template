@@ -18,7 +18,7 @@ spec:
       containers:
         - name: CodeProm-3d-frontend
           # The Harness pipeline will automatically inject the new built image tag here during deployment!
-          image: sourabh5050/frontend:<+pipeline.sequenceId>
+          image: <+artifact.image>
           imagePullPolicy: Always
           ports:
             - containerPort: 80
