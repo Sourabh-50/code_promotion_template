@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: opspilot-backend
-          image: <+artifact.image>
+          image: sourabh5050/backend:<+pipeline.sequenceId>
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
