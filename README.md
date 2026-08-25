@@ -1,8 +1,8 @@
-# Enterprise Code Promotion Template
+# Code Promotion Template
 
 Welcome to the **Enterprise Code Promotion Template**. This repository serves as a complete, production-ready blueprint for implementing continuous integration, automated deployment, and continuous verification (CV) using modern DevOps practices.
 
-## 🏗️ Architecture Overview
+##  Architecture Overview
 
 This template includes a full-stack application and a robust monitoring stack:
 
@@ -12,7 +12,7 @@ This template includes a full-stack application and a robust monitoring stack:
 - **Orchestration:** Local Kubernetes cluster support (`kind`) for deployment testing.
 - **CI/CD:** Designed specifically for **Harness CI/CD**, featuring automated rollbacks, manual approval gates, and continuous verification.
 
-## 🚀 Getting Started Locally
+##  Getting Started Locally
 
 ### Prerequisites
 - [Docker & Docker Compose](https://www.docker.com/)
@@ -49,7 +49,7 @@ This repository is optimized for deployment via **Harness**. The pipeline config
 3. **Manual Approval Gates:** Pauses pipeline execution to require enterprise sign-off before hitting production.
 4. **Continuous Verification (CV):** Leverages the `system_cpu_usage_percent` Prometheus metric to monitor health immediately after a rollout. If CPU spikes dangerously, Harness will automatically rollback the deployment.
 
-## 📂 Repository Structure
+##  Repository Structure
 
 ```text
 .
@@ -61,9 +61,9 @@ This repository is optimized for deployment via **Harness**. The pipeline config
 └── README.md                 # You are here!
 ```
 
-## 🛠️ Modifying the Application
+##  Modifying the Application
 
 To add new hardware metrics or modify the backend API, edit `backend/main.py`. The built-in Prometheus Instrumentator will automatically expose any new custom `Gauge` or `Counter` metrics you define to the `/metrics` endpoint.
 
 ---
-*Built with ❤️ for Enterprise DevOps Teams.*
+
