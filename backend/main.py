@@ -1,0 +1,31 @@
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+import datetime
+import socket
+
+app = FastAPI(title="OpsPilot Backend API")
+
+# Allow the frontend to call this API (CORS)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins for demo purposes
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+@app.get("/api/status")
+def get_status():
+    return {
+        "service": "OpsPilot Core API",
+        "status": "healthy",
+        "version": "1.0.0",
+        "timestamp": datetime.datetime.now().isoformat(),
+        "host": socket.gethostname(),
+        "database_connected": True,
+        "active_connections": 42
+    }
+
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
