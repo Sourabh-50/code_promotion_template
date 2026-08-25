@@ -15,7 +15,7 @@ services:
 
   prometheus:
     image: prom/prometheus:v2.51.0
-    container_name: opspilot-prometheus
+    container_name: codeprom-prometheus
     ports:
       - "9090:9090"
     volumes:
@@ -23,7 +23,7 @@ services:
 
   grafana:
     image: grafana/grafana:10.4.0
-    container_name: opspilot-grafana
+    container_name: codeprom-grafana
     ports:
       - "3000:3000"
     environment:
