@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: opspilot-backend
+  name: codeprom-backend
   namespace: default
   labels:
-    app: opspilot-backend
+    app: codeprom-backend
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: opspilot-backend
+      app: codeprom-backend
   template:
     metadata:
       labels:
-        app: opspilot-backend
+        app: codeprom-backend
     spec:
       containers:
-        - name: opspilot-backend
+        - name: codeprom-backend
           image: {{.Values.backend_image}}
           imagePullPolicy: Always
           ports:
@@ -32,12 +32,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: opspilot-backend-svc
+  name: codeprom-backend-svc
   namespace: default
 spec:
   type: NodePort
   selector:
-    app: opspilot-backend
+    app: codeprom-backend
   ports:
     - port: 8080
       targetPort: 8080
