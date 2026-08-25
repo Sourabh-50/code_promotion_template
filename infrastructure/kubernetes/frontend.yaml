@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: CodeProm-3d-frontend
+  name: codeprom-3d-frontend
   namespace: default
   labels:
-    app: CodeProm-3d-frontend
+    app: codeprom-3d-frontend
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: CodeProm-3d-frontend
+      app: codeprom-3d-frontend
   template:
     metadata:
       labels:
-        app: CodeProm-3d-frontend
+        app: codeprom-3d-frontend
     spec:
       containers:
-        - name: CodeProm-3d-frontend
+        - name: codeprom-3d-frontend
           # The Harness pipeline will automatically inject the new built image tag here during deployment!
           image: {{.Values.frontend_image}}
           imagePullPolicy: Always
@@ -33,12 +33,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: CodeProm-3d-frontend-svc
+  name: codeprom-3d-frontend-svc
   namespace: default
 spec:
   type: NodePort
   selector:
-    app: CodeProm-3d-frontend
+    app: codeprom-3d-frontend
   ports:
     - port: 80
       targetPort: 80
