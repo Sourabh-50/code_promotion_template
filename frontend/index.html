@@ -1,40 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpsPilot - FullStack Code Promotion</title>
+    <title>CodeProm - FullStack Code Promotion</title>
     <style>
-        body { margin: 0; overflow: hidden; background-color: #050505; color: white; font-family: 'Inter', sans-serif; }
-        #canvas-container { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; }
-        .ui-overlay { position: absolute; top: 10%; left: 10%; padding: 2rem; background: rgba(0, 0, 0, 0.7); border-radius: 12px; border: 1px solid rgba(0, 255, 128, 0.3); backdrop-filter: blur(10px); width: 350px;}
-        h1 { margin: 0 0 10px 0; color: #00ff80; text-transform: uppercase; letter-spacing: 2px; font-size: 24px; }
-        p { color: #cccccc; margin-bottom: 20px; font-size: 14px; }
-        .status-box { margin-top: 15px; padding: 12px; background: rgba(0, 255, 128, 0.1); color: #00ff80; border-radius: 6px; font-weight: bold; border: 1px solid #00ff80; display: flex; justify-content: space-between; align-items: center; }
-        .backend-data { font-family: monospace; font-size: 12px; color: #aaa; margin-top: 10px; padding: 10px; background: #111; border-radius: 4px; border: 1px solid #333;}
-        
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #050505;
+            color: white;
+            font-family: 'Inter', sans-serif;
+        }
+
+        #canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+        }
+
+        .ui-overlay {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 255, 128, 0.3);
+            backdrop-filter: blur(10px);
+            width: 350px;
+        }
+
+        h1 {
+            margin: 0 0 10px 0;
+            color: #00ff80;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 24px;
+        }
+
+        p {
+            color: #cccccc;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .status-box {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(0, 255, 128, 0.1);
+            color: #00ff80;
+            border-radius: 6px;
+            font-weight: bold;
+            border: 1px solid #00ff80;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .backend-data {
+            font-family: monospace;
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 10px;
+            padding: 10px;
+            background: #111;
+            border-radius: 4px;
+            border: 1px solid #333;
+        }
+
         :root {
             /* Change this variable during your demo! (e.g. 0xff0055 for Red) */
-            --globe-color: 0x00ff80; 
+            --globe-color: 0x00ff80;
         }
     </style>
 </head>
+
 <body>
     <div id="canvas-container"></div>
     <div class="ui-overlay">
-        <h1>OpsPilot CI/CD Core</h1>
+        <h1>CodeProm CI/CD Core</h1>
         <p>Full-Stack Code Promotion Architecture</p>
-        
+
         <div class="status-box" id="frontend-status">
             <span>Frontend State:</span>
             <span id="globe-color-text">NEON GREEN</span>
         </div>
-        
-        <div class="status-box" id="backend-status" style="border-color: #ffaa00; color: #ffaa00; background: rgba(255, 170, 0, 0.1);">
+
+        <div class="status-box" id="backend-status"
+            style="border-color: #ffaa00; color: #ffaa00; background: rgba(255, 170, 0, 0.1);">
             <span>Backend API:</span>
             <span id="api-state">CONNECTING...</span>
         </div>
-        
+
         <div class="backend-data" id="api-data">
             Waiting for backend response...
         </div>
@@ -49,9 +111,9 @@
         document.getElementById('canvas-container').appendChild(renderer.domElement);
 
         // DEV NOTE: Change this color for your demo!
-        const GLOBE_COLOR = 0x00ff80; 
-        
-        if(GLOBE_COLOR === 0xff0055) {
+        const GLOBE_COLOR = 0x00ff80;
+
+        if (GLOBE_COLOR === 0xff0055) {
             document.getElementById('globe-color-text').innerText = "HACKER RED";
             document.getElementById('globe-color-text').style.color = "#ff0055";
             document.getElementById('frontend-status').style.borderColor = "#ff0055";
@@ -85,19 +147,19 @@
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
-        
+
         // Fetch Data from the Backend API
         async function fetchBackendStatus() {
             try {
                 // Connects to the backend running locally or in K8s
                 const response = await fetch('http://localhost:8080/api/status');
                 const data = await response.json();
-                
+
                 document.getElementById('api-state').innerText = "CONNECTED";
                 document.getElementById('api-state').style.color = "#00ff80";
                 document.getElementById('backend-status').style.borderColor = "#00ff80";
                 document.getElementById('backend-status').style.background = "rgba(0, 255, 128, 0.1)";
-                
+
                 document.getElementById('api-data').innerText = JSON.stringify(data, null, 2);
             } catch (error) {
                 document.getElementById('api-state').innerText = "OFFLINE";
@@ -105,9 +167,10 @@
                 document.getElementById('api-data').innerText = "ERROR: Could not reach backend API.";
             }
         }
-        
+
         fetchBackendStatus();
         setInterval(fetchBackendStatus, 5000);
     </script>
 </body>
+
 </html>

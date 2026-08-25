@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import datetime
 import socket
 
-app = FastAPI(title="OpsPilot Backend API")
+app = FastAPI(title="CodeProm Backend API")
 
 # Allow the frontend to call this API (CORS)
 app.add_middleware(
@@ -17,7 +17,7 @@ app.add_middleware(
 @app.get("/api/status")
 def get_status():
     return {
-        "service": "OpsPilot Core API",
+        "service": "CodeProm Core API",
         "status": "healthy",
         "version": "1.0.0",
         "timestamp": datetime.datetime.now().isoformat(),
